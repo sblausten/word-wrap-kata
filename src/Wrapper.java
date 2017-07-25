@@ -1,8 +1,8 @@
 
 public class Wrapper {
 
-	public Wrapper() {
-		// TODO Auto-generated constructor stub
+	public static String wrap(String text, int columnLength) {
+		return text;
 	}
 
 }
