@@ -1,32 +1,36 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Wrapper {
 
 	public static String wrap(String text, int columnLength) {
 		int textLength = text.length();
+		if(textLength < columnLength) return text;
 		char[] charsArray = text.toCharArray();
-		List<String> textSections = new ArrayList<String>();
+		ArrayList<String> textSections = new ArrayList<String>();
 		int sectionCount = textLength / columnLength;
+		int charIndex = 0;
 		
-		int charNum = 0;
 		for (int i = 0; i < sectionCount; i++) {
 			String section = "";
-			for (int n = 0; n < columnLength; n++) {
-				section += charsArray[charNum];
-				charNum++;
+			int lengthTillLastSpace = charIndex + columnLength;
+			while (charsArray[lengthTillLastSpace] != ' ') {
+				lengthTillLastSpace -= 1;
 			}
-			textSections.add(section);
+			int charsInThisSection = lengthTillLastSpace - charIndex;
+			for (int n = 0; n < charsInThisSection; n++) {
+				section += charsArray[charIndex];
+				charIndex++;
+			}
+			textSections.add(section.trim());
 		}
-		int remainingChars = textLength % columnLength;
+		int remainingChars = textLength % charIndex;
 		if(remainingChars > 0) {
 			String section = "";
 			for (int n = 0; n < remainingChars; n++) {
-				section += charsArray[charNum];
-				charNum++;
+				section += charsArray[charIndex];
+				charIndex++;
 			}
-			textSections.add(section);
+			textSections.add(section.trim());
 		}
 		return text.join("\n", textSections);
 	}
