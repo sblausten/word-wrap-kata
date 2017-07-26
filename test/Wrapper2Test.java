@@ -28,5 +28,10 @@ public class Wrapper2Test {
 	public void wrap_ShouldReturnThreeWrappedStringsEqualOrLessThanCols() {
 		assertEquals("test\ntest\ntest", Wrapper2.wrap("testtesttest", 4));
 	}
+	
+	@Test
+	public void wrap_ShouldWrapStringAtLastSpaceBeforeColEnd() {
+		assertEquals("test\n test", Wrapper2.wrap("test test", 6));
+	}
 
 }
