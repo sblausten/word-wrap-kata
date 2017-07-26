@@ -23,5 +23,10 @@ public class Wrapper2Test {
 	public void wrap_ShouldReturnTwoWrappedStringsEqualOrLessThanCols() {
 		assertEquals("test\ntest", Wrapper2.wrap("testtest", 4));
 	}
+	
+	@Test
+	public void wrap_ShouldReturnThreeWrappedStringsEqualOrLessThanCols() {
+		assertEquals("test\ntest\ntest", Wrapper2.wrap("testtesttest", 4));
+	}
 
 }
