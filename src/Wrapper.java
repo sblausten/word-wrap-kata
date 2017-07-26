@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Wrapper {
 
@@ -13,25 +15,35 @@ public class Wrapper {
 		for (int i = 0; i < sectionCount; i++) {
 			String section = "";
 			int lengthTillLastSpace = charIndex + columnLength;
+			System.out.println("1st length " + lengthTillLastSpace);
 			while (charsArray[lengthTillLastSpace] != ' ') {
 				lengthTillLastSpace -= 1;
 			}
 			int charsInThisSection = lengthTillLastSpace - charIndex;
+			System.out.println("2nd length " + lengthTillLastSpace);
 			for (int n = 0; n < charsInThisSection; n++) {
 				section += charsArray[charIndex];
 				charIndex++;
 			}
+			System.out.println("Index " + charIndex);
+			//System.out.println(textSection);
 			textSections.add(section.trim());
 		}
+		System.out.println("Near index " + charIndex);
+		System.out.println("Text Length " + textLength);
 		int remainingChars = textLength % charIndex;
+		System.out.println("Remaining " + remainingChars);
 		if(remainingChars > 0) {
 			String section = "";
 			for (int n = 0; n < remainingChars; n++) {
 				section += charsArray[charIndex];
 				charIndex++;
 			}
+			System.out.println("Final index " + charIndex);
+			System.out.println("TotalChars " + charsArray.length);
 			textSections.add(section.trim());
 		}
+		System.out.println(textSections.get(1));
 		return text.join("\n", textSections);
 	}
 
