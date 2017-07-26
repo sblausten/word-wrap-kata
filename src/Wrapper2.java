@@ -2,12 +2,11 @@
 public class Wrapper2 {
 
 	public static String wrap(String text, int cols) {
-		int length = text.length();
-		if (cols >= length) { return text; }
-		String initialSection = text.substring(0, cols);
-		int actualCols = initialSection.lastIndexOf(' ');
-		if(actualCols == -1) actualCols = cols;
-		return (text.substring(0, actualCols) + "\n" + Wrapper2.wrap(text.substring(actualCols, length), cols));
+		if (cols >= text.length()) return text;
+		int colsToSpace = text.substring(0, cols).lastIndexOf(' ');
+		int actualCols = colsToSpace == -1 ? cols : colsToSpace + 1;
+		if (text.charAt(cols) == ' ') actualCols = cols + 1;
+		return (text.substring(0, actualCols) + "\n" + Wrapper2.wrap(text.substring(actualCols), cols));
 	}
-
+	
 }

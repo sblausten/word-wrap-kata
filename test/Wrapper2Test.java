@@ -31,7 +31,29 @@ public class Wrapper2Test {
 	
 	@Test
 	public void wrap_ShouldWrapStringAtLastSpaceBeforeColEnd() {
-		assertEquals("test\n test", Wrapper2.wrap("test test", 6));
+		assertEquals("test \ntest", Wrapper2.wrap("test test", 6));
+	}
+	
+	@Test
+	public void wrap_ShouldWrapStringAtLastSpaceBeforeColEnd2() {
+		assertEquals("test \ntest", Wrapper2.wrap("test test", 5));
+	}
+	
+	@Test
+	public void wrap_ShouldWrapStringAtLastSpaceBeforeColEnd4() {
+		assertEquals("test \ntest", Wrapper2.wrap("test test", 4));
+	}
+	
+	@Test
+	public void wrap_ShouldWrapStringAtLastSpaceBeforeColEnd3() {
+		assertEquals("tes\nt \ntes\nt", Wrapper2.wrap("test test", 3));
+	}
+	
+	@Test
+	public void wrap_ShouldWrapStringAtLastSpaceBeforeColEnds() {
+		String result = Wrapper2.wrap("test testerr teste", 6);
+		System.out.println(result);
+		assertEquals("test \ntester\nr \nteste", result);
 	}
 
 }
